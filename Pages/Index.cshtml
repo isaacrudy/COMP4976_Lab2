@@ -1,0 +1,31 @@
+﻿@page
+@model Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Zodiac Finder</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <input type="number" id="year" name="Year" class="form-control" placeholder="Please enter a year between 1900 and one year from now" 
+                min="1900" />
+        </div>
+
+        <span class="text-danger">@ViewData["Error"]</span>
+
+        <div>
+            <button type="submit" class="btn btn-primary" name="action" value="getZodiac">Get Zodiac</button>
+            <button type="submit" class="btn btn-secondary" name="Clear" value="clear">Clear</button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(@ViewData["Zodiac"] as string))
+        {
+            <div>
+                <h2>@ViewData["Zodiac"]</h2>
+                <img src='~/images/@ViewData["ZodiacUrl"]' alt="" />
+            </div>
+        }
+    </form>
+</div>
